@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
+        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount + 1}/{ScoreManager.Instance.MaxLaps}";
     }
 
     private void Update()
