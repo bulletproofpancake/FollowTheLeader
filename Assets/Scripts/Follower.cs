@@ -1,11 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using PathCreation;
 using UnityEngine;
 
-public class Follower : PlayerFollower
+public class Follower : MonoBehaviour
 {
-    protected override void Move()
+    [SerializeField] private float speed;
+    private float _distanceTravelled;
+    private PathCreator _pathCreator;
+
+    private void Start()
     {
-        base.Move();
+        _pathCreator = FindObjectOfType<PathCreator>();
+    }
+
+    private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
+    {
+        _distanceTravelled += speed * Time.deltaTime;
+        transform.position = _pathCreator.path.GetPointAtDistance(_distanceTravelled);
+        transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
 }
