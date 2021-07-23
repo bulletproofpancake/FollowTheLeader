@@ -5,6 +5,8 @@ public class LapCounter : MonoBehaviour
 {
     public static event Action ScoreLap;
 
+    public static event Action SpawnFollower;
+
     private bool _hasGameStarted;
 
     private void OnEnable()
@@ -18,8 +20,9 @@ public class LapCounter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!_hasGameStarted) return;
         if (!other.CompareTag("Player")) return;
+        SpawnFollower?.Invoke();
+        if (!_hasGameStarted) return;
         ScoreLap?.Invoke();
     }
 

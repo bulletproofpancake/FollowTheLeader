@@ -9,7 +9,7 @@ public class PlayerFollower : MonoBehaviour
     private float _currentSpeed;
     private float _distanceTravelled;
 
-    private List<Follower> _followers;
+    [SerializeField] private List<Follower> _followers;
 
 
     private void Awake()
@@ -21,13 +21,13 @@ public class PlayerFollower : MonoBehaviour
     private void OnEnable()
     {
         GameManager.GameStart += OnGameStart;
-        LapCounter.ScoreLap += SpawnFollower;
+        LapCounter.SpawnFollower += SpawnFollower;
     }
     
     private void OnDisable()
     {
         GameManager.GameStart -= OnGameStart;
-        LapCounter.ScoreLap -= SpawnFollower;
+        LapCounter.SpawnFollower -= SpawnFollower;
     }
 
     private void Update()
@@ -46,6 +46,11 @@ public class PlayerFollower : MonoBehaviour
     private void OnGameStart()
     {
         _distanceTravelled = 0;
+        foreach (var follower in _followers)
+        {
+            follower.gameObject.SetActive(false);
+        }
+        _followers.Clear();
     }
 
     private void SpawnFollower()

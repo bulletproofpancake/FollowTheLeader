@@ -19,9 +19,14 @@ public class Follower : MonoBehaviour
         Move();
     }
 
+    private void OnDisable()
+    {
+        _distanceTravelled = 0f;
+    }
+
     private void Move()
     {
-        speed = Input.GetKey(KeyCode.Space) ? speed > 0 ? speed -= Time.deltaTime * 5 : 0 : 2.75f;
+        speed = Input.GetKey(KeyCode.Space) ? speed > 0 ? speed -= Time.deltaTime * 5f : 0 : 2.75f;
         _distanceTravelled += speed * Time.deltaTime;
         transform.position = _pathCreator.path.GetPointAtDistance(_distanceTravelled);
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
