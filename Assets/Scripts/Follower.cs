@@ -10,6 +10,7 @@ public class Follower : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.hasGameStarted) _distanceTravelled = 0f;
         _currentSpeed = Input.GetKey(KeyCode.Space) ? 0f : speed;
         _distanceTravelled += _currentSpeed * Time.deltaTime;
         transform.position = pathCreator.path.GetPointAtDistance(_distanceTravelled);
