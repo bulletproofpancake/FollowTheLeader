@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
@@ -8,20 +9,25 @@ public class PlayerFollower : MonoBehaviour
     private float _currentSpeed;
     private float _distanceTravelled;
 
+    private List<Follower> _followers;
+
 
     private void Awake()
     {
         _pathCreator = FindObjectOfType<PathCreator>();
+        _followers = new List<Follower>();
     }
 
     private void OnEnable()
     {
         GameManager.GameStart += OnGameStart;
+        LapCounter.ScoreLap += SpawnFollower;
     }
     
     private void OnDisable()
     {
         GameManager.GameStart -= OnGameStart;
+        LapCounter.ScoreLap -= SpawnFollower;
     }
 
     private void Update()
@@ -40,6 +46,13 @@ public class PlayerFollower : MonoBehaviour
     private void OnGameStart()
     {
         _distanceTravelled = 0;
+    }
+
+    private void SpawnFollower()
+    {
+        GameObject follower = ObjectPool.Instance.GetPooledObject();
+        _followers.Add(follower.GetComponent<Follower>());
+        follower.SetActive(true);
     }
     
 }
