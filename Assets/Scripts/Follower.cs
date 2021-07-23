@@ -35,4 +35,13 @@ public class Follower : MonoBehaviour
         transform.position = _pathCreator.path.GetPointAtDistance(_distanceTravelled);
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Obstacle"))
+        {
+            print("Obstacle");
+            gameObject.SetActive(false);
+        }
+    }
 }

@@ -11,14 +11,12 @@ public class UIManager : MonoBehaviour
     {
         LapCounter.ScoreLap += UpdateScore;
         GameManager.GameStart += HideTitleScreen;
-        LapCounter.SpawnFollower += UpdateEmployeeCount;
     }
 
     private void OnDisable()
     {
         LapCounter.ScoreLap -= UpdateScore;
         GameManager.GameStart -= HideTitleScreen;
-        LapCounter.SpawnFollower -= UpdateEmployeeCount;
     }
 
     private void Start()
@@ -31,9 +29,9 @@ public class UIManager : MonoBehaviour
         lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
     }
 
-    private void UpdateEmployeeCount()
+    private void Update()
     {
-        employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count + 1}";
+        employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count}";
     }
     
     private void HideTitleScreen()
