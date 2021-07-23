@@ -5,7 +5,8 @@ public class ScoreManager : Singleton<ScoreManager>
     [Header("Lap Settings")]
     [SerializeField] private int maxLaps;
     public int MaxLaps => maxLaps;
-    private int _lapCount = 0;
+    
+    private int _lapCount;
     public int LapCount => _lapCount;
 
     private void OnEnable()

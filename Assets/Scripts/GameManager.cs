@@ -1,14 +1,20 @@
+using System;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
     [Header("Game Settings")]
-    public bool hasGameStarted;
-    public bool isGameOver;
-
+    private bool _hasGameStarted;
+    private bool _isGameOver;
+    
+    public static event Action GameStart;
+    public static event Action GameOver;
+    
     private void Update()
     {
-        if (hasGameStarted) return;
-        hasGameStarted = Input.GetKeyDown(KeyCode.Space);
+        if (_hasGameStarted) return;
+        if (!Input.GetKeyDown(KeyCode.Space)) return;
+        GameStart?.Invoke();
+        _hasGameStarted = true;
     }
 }
