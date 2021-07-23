@@ -22,6 +22,10 @@ public class Follower : MonoBehaviour
     private void OnDisable()
     {
         _distanceTravelled = 0f;
+        if (PlayerFollower.Instance.followers.Contains(this))
+        {
+            PlayerFollower.Instance.followers.Remove(this);    
+        }
     }
 
     private void Move()

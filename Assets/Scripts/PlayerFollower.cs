@@ -1,32 +1,34 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
-public class PlayerFollower : MonoBehaviour
+public class PlayerFollower : Singleton<PlayerFollower>
 {
     [SerializeField] private float speed;
     private PathCreator _pathCreator;
     private float _currentSpeed;
     private float _distanceTravelled;
 
-    [SerializeField] private List<Follower> _followers;
+    public List<Follower> followers;
 
+    public static event Action SpawnCount;
 
     private void Awake()
     {
         _pathCreator = FindObjectOfType<PathCreator>();
-        _followers = new List<Follower>();
+        followers = new List<Follower>();
     }
 
     private void OnEnable()
     {
-        GameManager.GameStart += OnGameStart;
+        //GameManager.GameStart += OnGameStart;
         LapCounter.SpawnFollower += SpawnFollower;
     }
     
     private void OnDisable()
     {
-        GameManager.GameStart -= OnGameStart;
+        //GameManager.GameStart -= OnGameStart;
         LapCounter.SpawnFollower -= SpawnFollower;
     }
 
@@ -43,20 +45,20 @@ public class PlayerFollower : MonoBehaviour
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
 
-    private void OnGameStart()
-    {
-        _distanceTravelled = 0;
-        foreach (var follower in _followers)
-        {
-            follower.gameObject.SetActive(false);
-        }
-        _followers.Clear();
-    }
+    //private void OnGameStart()
+    //{
+        // _distanceTravelled = 0;
+        // foreach (var follower in _followers)
+        // {
+        //     follower.gameObject.SetActive(false);
+        // }
+        // _followers.Clear();
+    //}
 
     private void SpawnFollower()
     {
         GameObject follower = ObjectPool.Instance.GetPooledObject();
-        _followers.Add(follower.GetComponent<Follower>());
+        followers.Add(follower.GetComponent<Follower>());
         follower.SetActive(true);
     }
     
