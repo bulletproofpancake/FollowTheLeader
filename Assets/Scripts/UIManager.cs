@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject titleScreen;
     [SerializeField] private TextMeshProUGUI lapsDisplay;
 
     private void OnEnable()
     {
         LapCounter.ScoreLap += UpdateScore;
+        GameManager.GameStart += HideTitleScreen;
     }
 
     private void OnDisable()
     {
         LapCounter.ScoreLap -= UpdateScore;
+        GameManager.GameStart -= HideTitleScreen;
     }
 
     private void Start()
@@ -27,4 +27,10 @@ public class UIManager : MonoBehaviour
     {
         lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
     }
+
+    private void HideTitleScreen()
+    {
+        titleScreen.SetActive(false);
+    }
+    
 }

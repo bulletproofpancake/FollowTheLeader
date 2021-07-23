@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Game Settings")]
     private bool _hasGameStarted;
     private bool _isGameOver;
-    
+
     public static event Action GameStart;
     public static event Action GameOver;
     
