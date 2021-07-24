@@ -19,6 +19,14 @@ public class ScoreManager : Singleton<ScoreManager>
         LapCounter.ScoreLap -= AddScore;
     }
 
+    private void Update()
+    {
+        if (_lapCount > maxLaps)
+        {
+            GameManager.Instance.isGameOver = true;
+        }
+    }
+
     private void AddScore()
     {
         _lapCount++;
