@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float baseSpeed;
+    private float _speed;
     private float _distanceTravelled;
     private PathCreator _pathCreator;
 
@@ -30,8 +31,8 @@ public class Follower : MonoBehaviour
 
     private void Move()
     {
-        speed = Input.GetKey(KeyCode.Space) ? speed > 0 ? speed -= Time.deltaTime * 5f : 0 : 2.75f;
-        _distanceTravelled += speed * Time.deltaTime;
+        _speed = Input.GetKey(KeyCode.Space) ? _speed > 0 ? _speed -= Time.deltaTime * 5f : 0 : baseSpeed;
+        _distanceTravelled += _speed * Time.deltaTime;
         transform.position = _pathCreator.path.GetPointAtDistance(_distanceTravelled);
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
