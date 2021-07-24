@@ -7,21 +7,25 @@ public class GameManager : Singleton<GameManager>
     public bool hasGameStarted;
     public bool isGameOver;
 
-    public static event Action GameStart;
+    public int bestScore;
+    
+    
     public static event Action GameOver;
     
     private void Update()
     {
         if (hasGameStarted)
         {
-            if(!isGameOver) return;
-            //GameOver?.Invoke();
-            hasGameStarted = false;
+            if(isGameOver)
+            {
+                GameOver?.Invoke();
+                hasGameStarted = false;
+            }
             //isGameOver = false;
         }
         if (!Input.GetKeyDown(KeyCode.Space)) return;
         if (!hasGameStarted && isGameOver) isGameOver = !isGameOver;
-        GameStart?.Invoke();
+        //GameStart?.Invoke();
         hasGameStarted = true;
     }
 }

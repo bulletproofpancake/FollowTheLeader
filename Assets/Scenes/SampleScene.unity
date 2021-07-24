@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreen: {fileID: 1672082249}
   endScreen: {fileID: 1983803045}
-  lapsDisplay: {fileID: 1393424650}
+  bestDisplay: {fileID: 1393424650}
   employeeDisplay: {fileID: 771523523}
 --- !u!4 &23491553
 Transform:
@@ -1456,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1393424649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Laps:'
+  m_text: 'Best:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a35aafde310bf54683de7e668231ae2, type: 2}
   m_sharedMaterial: {fileID: 5802397487478647694, guid: 6a35aafde310bf54683de7e668231ae2, type: 2}
@@ -2213,6 +2213,7 @@ MonoBehaviour:
   isPersist: 0
   hasGameStarted: 0
   isGameOver: 0
+  bestScore: 0
 --- !u!4 &2107957703
 Transform:
   m_ObjectHideFlags: 0

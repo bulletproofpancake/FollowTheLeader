@@ -48,11 +48,16 @@ public class PlayerFollower : Singleton<PlayerFollower>
 
     private void OnGameOver()
     {
-         foreach (var follower in followers)
-         {
-             follower.gameObject.SetActive(false);
-         }
-         followers.Clear();
+        if (followers.Count >= GameManager.Instance.bestScore)
+        {
+            GameManager.Instance.bestScore = followers.Count;
+        }
+        
+        foreach (var follower in followers)
+        {
+            follower.gameObject.SetActive(false);
+        }
+        followers.Clear();
     }
 
     private void SpawnFollower()
