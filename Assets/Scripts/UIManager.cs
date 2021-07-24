@@ -5,7 +5,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
-    [SerializeField] private TextMeshProUGUI lapsDisplay;
+    //[SerializeField] private TextMeshProUGUI lapsDisplay;
     [SerializeField] private TextMeshProUGUI employeeDisplay;
 
     private void ShowEndScreen()
@@ -15,12 +15,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
+        //lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
     }
     
     private void Update()
     {
-        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
+        //lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
         employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count:00}";
         titleScreen.SetActive(!GameManager.Instance.hasGameStarted && !GameManager.Instance.isGameOver);
         endScreen.SetActive(GameManager.Instance.isGameOver);
