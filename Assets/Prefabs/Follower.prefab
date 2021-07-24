@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 2.5
+  brakeForce: 5
 --- !u!54 &2497118502514428863
 Rigidbody:
   m_ObjectHideFlags: 0
