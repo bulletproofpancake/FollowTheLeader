@@ -12,12 +12,19 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void OnEnable()
     {
+        GameManager.GameStart += ResetScore;
         LapCounter.ScoreLap += AddScore;
     }
 
     private void OnDisable()
     {
+        GameManager.GameStart += ResetScore;
         LapCounter.ScoreLap -= AddScore;
+    }
+
+    private void ResetScore()
+    {
+        _lapCount = 0;
     }
 
     private void Update()

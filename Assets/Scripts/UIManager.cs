@@ -8,18 +8,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lapsDisplay;
     [SerializeField] private TextMeshProUGUI employeeDisplay;
 
-    private void OnEnable()
-    {
-        GameManager.GameStart += HideTitleScreen;
-        GameManager.GameOver += ShowEndScreen;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.GameStart -= HideTitleScreen;
-        GameManager.GameOver += ShowEndScreen;
-    }
-
     private void ShowEndScreen()
     {
         endScreen.SetActive(true);
@@ -34,6 +22,9 @@ public class UIManager : MonoBehaviour
     {
         lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
         employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count}";
+        titleScreen.SetActive(!GameManager.Instance.hasGameStarted && !GameManager.Instance.isGameOver);
+        endScreen.SetActive(GameManager.Instance.isGameOver);
+        
     }
     
     private void HideTitleScreen()
