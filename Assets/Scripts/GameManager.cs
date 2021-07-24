@@ -14,12 +14,13 @@ public class GameManager : Singleton<GameManager>
     {
         if (hasGameStarted)
         {
-            if(!isGameOver) return; 
-            GameOver?.Invoke();
+            if(!isGameOver) return;
+            //GameOver?.Invoke();
             hasGameStarted = false;
-            isGameOver = false;
+            //isGameOver = false;
         }
         if (!Input.GetKeyDown(KeyCode.Space)) return;
+        if (!hasGameStarted && isGameOver) isGameOver = !isGameOver;
         GameStart?.Invoke();
         hasGameStarted = true;
     }
