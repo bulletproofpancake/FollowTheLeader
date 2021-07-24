@@ -7,7 +7,8 @@ public class ScoreManager : Singleton<ScoreManager>
     public int MaxLaps => maxLaps;
     
     private int _lapCount;
-    public int LapCount => _lapCount;
+
+    public int LapCount => _lapCount >= maxLaps ? maxLaps : _lapCount;
 
     private void OnEnable()
     {

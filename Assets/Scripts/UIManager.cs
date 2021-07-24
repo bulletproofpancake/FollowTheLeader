@@ -10,14 +10,12 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        LapCounter.ScoreLap += UpdateScore;
         GameManager.GameStart += HideTitleScreen;
         GameManager.GameOver += ShowEndScreen;
     }
 
     private void OnDisable()
     {
-        LapCounter.ScoreLap -= UpdateScore;
         GameManager.GameStart -= HideTitleScreen;
         GameManager.GameOver += ShowEndScreen;
     }
@@ -31,21 +29,17 @@ public class UIManager : MonoBehaviour
     {
         lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
     }
-
-    private void UpdateScore()
-    {
-        if (GameManager.Instance.isGameOver) return;
-        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount + 1}/{ScoreManager.Instance.MaxLaps}";
-    }
-
+    
     private void Update()
     {
+        lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
         employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count}";
     }
     
     private void HideTitleScreen()
     {
         titleScreen.SetActive(false);
+        endScreen.SetActive(false);
     }
     
 }
