@@ -26,14 +26,14 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         _lapCount = 0;
     }
-
-    private void Update()
-    {
-        if (_lapCount > maxLaps)
-        {
-            GameManager.Instance.isGameOver = true;
-        }
-    }
+    
+    // private void Update()
+    // {
+    //     if (_lapCount > maxLaps)
+    //     {
+    //         GameManager.Instance.isGameOver = true;
+    //     }
+    // }
 
     private void AddScore()
     {

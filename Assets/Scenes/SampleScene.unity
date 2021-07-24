@@ -719,7 +719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Press space to play again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a35aafde310bf54683de7e668231ae2, type: 2}
   m_sharedMaterial: {fileID: 5802397487478647694, guid: 6a35aafde310bf54683de7e668231ae2, type: 2}
@@ -1501,7 +1501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1393424649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2256,6 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPersist: 0
+  hasGameStarted: 0
   isGameOver: 0
 --- !u!4 &2107957703
 Transform:

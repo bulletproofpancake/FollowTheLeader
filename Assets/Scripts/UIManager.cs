@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         lapsDisplay.text = $"Laps: {ScoreManager.Instance.LapCount}/{ScoreManager.Instance.MaxLaps}";
-        employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count}";
+        employeeDisplay.text = $"Employees: {PlayerFollower.Instance.followers.Count:00}";
         titleScreen.SetActive(!GameManager.Instance.hasGameStarted && !GameManager.Instance.isGameOver);
         endScreen.SetActive(GameManager.Instance.isGameOver);
         

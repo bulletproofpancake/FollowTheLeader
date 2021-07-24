@@ -24,6 +24,7 @@ public class Follower : MonoBehaviour
     private void OnDisable()
     {
         _distanceTravelled = 0f;
+        if (PlayerFollower.Instance.followers == null) return;
         if (PlayerFollower.Instance.followers.Contains(this))
         {
             PlayerFollower.Instance.followers.Remove(this);    
@@ -38,12 +39,9 @@ public class Follower : MonoBehaviour
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.collider.CompareTag("Obstacle"))
-        {
-            print("Obstacle");
+        if (other.CompareTag("Obstacle"))
             gameObject.SetActive(false);
-        }
     }
 }

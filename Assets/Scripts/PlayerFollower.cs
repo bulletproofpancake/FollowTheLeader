@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
@@ -12,7 +13,7 @@ public class PlayerFollower : Singleton<PlayerFollower>
 
     public List<Follower> followers;
 
-    public static event Action SpawnCount;
+    //public static event Action SpawnCount;
 
     private void Awake()
     {
@@ -22,13 +23,13 @@ public class PlayerFollower : Singleton<PlayerFollower>
 
     private void OnEnable()
     {
-        //GameManager.GameStart += OnGameStart;
+        GameManager.GameOver += OnGameOver;
         LapCounter.SpawnFollower += SpawnFollower;
     }
     
     private void OnDisable()
     {
-        //GameManager.GameStart -= OnGameStart;
+        GameManager.GameOver -= OnGameOver;
         LapCounter.SpawnFollower -= SpawnFollower;
     }
 
@@ -45,15 +46,14 @@ public class PlayerFollower : Singleton<PlayerFollower>
         transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled);
     }
 
-    //private void OnGameStart()
-    //{
-        // _distanceTravelled = 0;
-        // foreach (var follower in _followers)
-        // {
-        //     follower.gameObject.SetActive(false);
-        // }
-        // _followers.Clear();
-    //}
+    private void OnGameOver()
+    {
+         foreach (var follower in followers)
+         {
+             follower.gameObject.SetActive(false);
+         }
+         followers.Clear();
+    }
 
     private void SpawnFollower()
     {
@@ -61,5 +61,13 @@ public class PlayerFollower : Singleton<PlayerFollower>
         followers.Add(follower.GetComponent<Follower>());
         follower.SetActive(true);
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle") && GameManager.Instance.hasGameStarted)
+        {
+            GameManager.Instance.isGameOver = true;
+        }
+    }
+
 }
